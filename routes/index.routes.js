@@ -9,7 +9,6 @@ router.get('/',(req,res)=>{
 
 router.get('/my-entries', isSignedIn, async (req, res) => {
     try {
-        // only entries owned by the logged in user
         const entries = await Entry.find({ owner: req.session.user._id })
         res.render('entries/my-entries.ejs', { entries })
     } catch (error) {
